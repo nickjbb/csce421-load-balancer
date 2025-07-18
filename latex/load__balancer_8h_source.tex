@@ -1,0 +1,163 @@
+\doxysection{load\+\_\+balancer.\+h}
+\hypertarget{load__balancer_8h_source}{}\label{load__balancer_8h_source}\mbox{\hyperlink{load__balancer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ LOADBALANCER\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ LOADBALANCER\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{requests_8h}{requests.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{webserver_8h}{webserver.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_loadbalancer_a6c5550cabf9f8a94e244210a020f5fd6}{Loadbalancer}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_loadbalancer_a6c5550cabf9f8a94e244210a020f5fd6}{Loadbalancer}}(\textcolor{keywordtype}{int}\ num\_servers)\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ sys\_time\ =\ 0;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ num\_servers;\ ++i)\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_webserver}{Webserver}}\ w(\textcolor{stringliteral}{"{}Server\_"{}}\ +\ std::to\_string(i));}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ servers.push\_back(w);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ deleted\_requests\ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_loadbalancer_a1d1c4aca60c0ca3d4239158ea49f48f5}{get\_time}}()\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sys\_time;}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_loadbalancer_adf1d770427c205bf95e5eb4f9086a890}{add\_request}}(\mbox{\hyperlink{structrequest}{request}}\ r)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ request\_queue.push(r);}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_loadbalancer_adbed7fff64bfbe4e138409cb0e97b81c}{is\_queue\_empty}}()\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ request\_queue.empty();}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_loadbalancer_a83503dfc5cecb919120d05ac7999daad}{addTime}}()\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ sys\_time++;}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_loadbalancer_a2baba21d5dad817974fc86b62d190c4e}{get\_queue\_size}}()\{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ request\_queue.size();}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{structrequest}{request}}\ \mbox{\hyperlink{class_loadbalancer_a0a364cde0db8a72a9392a4ab5a573b10}{get\_request}}()\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_loadbalancer_a83503dfc5cecb919120d05ac7999daad}{addTime}}();}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_loadbalancer_adbed7fff64bfbe4e138409cb0e97b81c}{is\_queue\_empty}}())\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structrequest}{request}}\ r\ =\ request\_queue.front();}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ request\_queue.pop();}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ r;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_loadbalancer_acfd872c5aab4ddd17948fbb8ae24a156}{get\_deleted\_requests}}()\{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ deleted\_requests;}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_loadbalancer_aa76d79d6f81f54a90bee9fd7ce8e853e}{server\_size}}()\{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ servers.size();}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_loadbalancer_a468eca91b1e0a6e31bfd40daa51e8f5b}{add\_server}}()\{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_webserver}{Webserver}}\ s(\textcolor{stringliteral}{"{}Server\_"{}}\ +\ std::to\_string(servers.size()));}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ servers.push\_back(s);}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_loadbalancer_a9efaeeb2f2984c15713a2ec80c536eb9}{firewall}}(\mbox{\hyperlink{class_webserver}{Webserver}}\&\ server)\{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (server.\mbox{\hyperlink{class_webserver_a62e74e943fdb719f34363283d1df996e}{get\_curr\_request}}().\mbox{\hyperlink{structrequest_af77d7af29720ff6c9c185eac3fe557c6}{ip\_in}}\ ==\ \textcolor{stringliteral}{"{}"{}})\{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ std::string\ ip\_in\ =\ server.\mbox{\hyperlink{class_webserver_a62e74e943fdb719f34363283d1df996e}{get\_curr\_request}}().\mbox{\hyperlink{structrequest_af77d7af29720ff6c9c185eac3fe557c6}{ip\_in}}.substr(8);\ \textcolor{comment}{//\ Skip\ "{}192.168."{}}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ std::string\ ip\_out\ =\ server.\mbox{\hyperlink{class_webserver_a62e74e943fdb719f34363283d1df996e}{get\_curr\_request}}().\mbox{\hyperlink{structrequest_a62766861a451e4cdddd9e960f369a5ce}{ip\_out}}.substr(5);\ \textcolor{comment}{//\ Skip\ "{}10.0."{}}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ third\_num\_in\_pos\ =\ ip\_in.find(\textcolor{charliteral}{'.'});}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ std::string\ third\_num\_in\ =\ ip\_in.substr(0,\ third\_num\_in\_pos);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ third\_num\ =\ std::stoi(third\_num\_in);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ third\_num\_out\_pos\ =\ ip\_out.find(\textcolor{charliteral}{'.'});}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ std::string\ third\_num\_out\ =\ ip\_out.substr(0,\ third\_num\_out\_pos);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ third\_num\ =\ std::stoi(third\_num\_out);}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (third\_num\ >=\ 200)\{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ server.\mbox{\hyperlink{class_webserver_ab4052459721c5660c8f87ab7634bf339}{get\_name}}()\ <<\ \textcolor{stringliteral}{"{}\ deleted\ request\ from\ "{}}\ <<\ server.\mbox{\hyperlink{class_webserver_a62e74e943fdb719f34363283d1df996e}{get\_curr\_request}}().\mbox{\hyperlink{structrequest_af77d7af29720ff6c9c185eac3fe557c6}{ip\_in}}\ <<\ \textcolor{stringliteral}{"{}\ to\ "{}}\ <<\ server.\mbox{\hyperlink{class_webserver_a62e74e943fdb719f34363283d1df996e}{get\_curr\_request}}().\mbox{\hyperlink{structrequest_a62766861a451e4cdddd9e960f369a5ce}{ip\_out}}\ <<\ \textcolor{stringliteral}{"{}\ at\ time\ "{}}\ <<\ sys\_time\ <<\ std::endl;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_webserver_a3de26c45370f77a4225c489b81279177}{add\_request}}(\mbox{\hyperlink{structrequest}{request}}\{\textcolor{stringliteral}{"{}"{}},\ \textcolor{stringliteral}{"{}"{}},\ 0\},\ 0);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_webserver_addcd8c8fea60c1173ba97e7a3a2d5735}{set\_idle}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ ++deleted\_requests;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_loadbalancer_a76742a2651dfb9af5fd513d4c925776c}{simulate\_requests}}(\textcolor{keywordtype}{int}\ num\_servers)\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structrequest}{request}}\ empty\_request\ =\ \{\textcolor{stringliteral}{"{}"{}},\ \textcolor{stringliteral}{"{}"{}},\ 0\};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ std::vector<int>\ servers\_to\_remove;}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ servers.size();\ ++i)\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_webserver}{Webserver}}\&\ server\ =\ servers[i];}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_loadbalancer_a9efaeeb2f2984c15713a2ec80c536eb9}{firewall}}(server);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (server.\mbox{\hyperlink{class_webserver_a62e74e943fdb719f34363283d1df996e}{get\_curr\_request}}().\mbox{\hyperlink{structrequest_af77d7af29720ff6c9c185eac3fe557c6}{ip\_in}}\ ==\ \textcolor{stringliteral}{"{}"{}}\ \&\&\ !\mbox{\hyperlink{class_loadbalancer_adbed7fff64bfbe4e138409cb0e97b81c}{is\_queue\_empty}}())\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structrequest}{request}}\ r\ =\ request\_queue.front();}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request\_queue.pop();}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ server.\mbox{\hyperlink{class_webserver_ab4052459721c5660c8f87ab7634bf339}{get\_name}}()\ <<\ \textcolor{stringliteral}{"{}\ processed\ request\ from\ "{}}\ <<\ r.\mbox{\hyperlink{structrequest_af77d7af29720ff6c9c185eac3fe557c6}{ip\_in}}\ <<\ \textcolor{stringliteral}{"{}\ to\ "{}}\ <<\ r.\mbox{\hyperlink{structrequest_a62766861a451e4cdddd9e960f369a5ce}{ip\_out}}\ <<\ \textcolor{stringliteral}{"{}\ at\ time\ "{}}\ <<\ sys\_time\ <<\ std::endl;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_webserver_a3de26c45370f77a4225c489b81279177}{add\_request}}(r,\ sys\_time);}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_webserver_addcd8c8fea60c1173ba97e7a3a2d5735}{set\_idle}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (server.\mbox{\hyperlink{class_webserver_aa21be0f4fe9bc26275dd959d5deb27d0}{is\_request\_done}}(sys\_time))\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (server.\mbox{\hyperlink{class_webserver_a62e74e943fdb719f34363283d1df996e}{get\_curr\_request}}().\mbox{\hyperlink{structrequest_af77d7af29720ff6c9c185eac3fe557c6}{ip\_in}}\ !=\ \textcolor{stringliteral}{"{}"{}})\{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ server.\mbox{\hyperlink{class_webserver_ab4052459721c5660c8f87ab7634bf339}{get\_name}}()\ <<\ \textcolor{stringliteral}{"{}\ finished\ request\ from\ "{}}\ <<\ server.\mbox{\hyperlink{class_webserver_a62e74e943fdb719f34363283d1df996e}{get\_curr\_request}}().\mbox{\hyperlink{structrequest_af77d7af29720ff6c9c185eac3fe557c6}{ip\_in}}\ <<\ \textcolor{stringliteral}{"{}\ to\ "{}}\ <<\ server.\mbox{\hyperlink{class_webserver_a62e74e943fdb719f34363283d1df996e}{get\_curr\_request}}().\mbox{\hyperlink{structrequest_a62766861a451e4cdddd9e960f369a5ce}{ip\_out}}\ <<\ \textcolor{stringliteral}{"{}\ at\ time\ "{}}\ <<\ sys\_time\ <<\ std::endl;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_webserver_a3de26c45370f77a4225c489b81279177}{add\_request}}(empty\_request,\ sys\_time);}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_webserver_addcd8c8fea60c1173ba97e7a3a2d5735}{set\_idle}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_loadbalancer_adbed7fff64bfbe4e138409cb0e97b81c}{is\_queue\_empty}}())\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structrequest}{request}}\ r\ =\ request\_queue.front();}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request\_queue.pop();}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ server.\mbox{\hyperlink{class_webserver_ab4052459721c5660c8f87ab7634bf339}{get\_name}}()\ <<\ \textcolor{stringliteral}{"{}\ processed\ request\ from\ "{}}\ <<\ r.\mbox{\hyperlink{structrequest_af77d7af29720ff6c9c185eac3fe557c6}{ip\_in}}\ <<\ \textcolor{stringliteral}{"{}\ to\ "{}}\ <<\ r.\mbox{\hyperlink{structrequest_a62766861a451e4cdddd9e960f369a5ce}{ip\_out}}\ <<\ \textcolor{stringliteral}{"{}\ at\ time\ "{}}\ <<\ sys\_time\ <<\ std::endl;}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_webserver_a3de26c45370f77a4225c489b81279177}{add\_request}}(r,\ sys\_time);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_webserver_addcd8c8fea60c1173ba97e7a3a2d5735}{set\_idle}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (server.\mbox{\hyperlink{class_webserver_acd253a0d1562e7b57670af968eae5593}{is\_idle}}()\ \&\&\ \mbox{\hyperlink{class_loadbalancer_adbed7fff64bfbe4e138409cb0e97b81c}{is\_queue\_empty}}())\{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ servers\_to\_remove.push\_back(i);}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ it\ =\ servers\_to\_remove.rbegin();\ it\ !=\ servers\_to\_remove.rend();\ ++it)\{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ servers.at(*it).get\_name()\ <<\ \textcolor{stringliteral}{"{}\ is\ idle.\ Deleting..."{}}\ <<\ std::endl;}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ servers.erase(servers.begin()\ +\ *it);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (servers.size()\ <\ num\_servers\ \&\&\ !\mbox{\hyperlink{class_loadbalancer_adbed7fff64bfbe4e138409cb0e97b81c}{is\_queue\_empty}}())\{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_loadbalancer_a468eca91b1e0a6e31bfd40daa51e8f5b}{add\_server}}();}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rand()\ \%\ 5\ ==\ 0)\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structrequest}{request}}\ new\_request\ =\ \mbox{\hyperlink{load__balancer_8cpp_a00b5abd305e6edcbc4791d739f6b01b0}{generate\_request}}();}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ request\_queue.push(new\_request);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ sys\_time++;}
+\DoxyCodeLine{00203\ \ \ \ \ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordtype}{int}\ sys\_time;\ \ }
+\DoxyCodeLine{00207\ \ \ \ \ std::vector<Webserver>\ servers;\ \ }
+\DoxyCodeLine{00208\ \ \ \ \ std::queue<request>\ request\_queue;\ \ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordtype}{int}\ deleted\_requests;\ }
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00215\ \ \ \ \ \mbox{\hyperlink{structrequest}{request}}\ \mbox{\hyperlink{load__balancer_8cpp_a00b5abd305e6edcbc4791d739f6b01b0}{generate\_request}}()\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structrequest}{request}}\ r;}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ r.\mbox{\hyperlink{structrequest_af77d7af29720ff6c9c185eac3fe557c6}{ip\_in}}\ =\ \textcolor{stringliteral}{"{}192.168."{}}\ +\ std::to\_string(rand()\ \%\ 256)\ +\ \textcolor{stringliteral}{"{}."{}}\ +\ std::to\_string(rand()\ \%\ 256);}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ r.\mbox{\hyperlink{structrequest_a62766861a451e4cdddd9e960f369a5ce}{ip\_out}}\ =\ \textcolor{stringliteral}{"{}10.0."{}}\ +\ std::to\_string(rand()\ \%\ 256)\ +\ \textcolor{stringliteral}{"{}."{}}\ +\ std::to\_string(rand()\ \%\ 256);}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ r.\mbox{\hyperlink{structrequest_a5c18b4b89ab41d22af34f21a079d2cb5}{time\_processed}}\ =\ (rand()\ \%\ 10)\ +\ 1;}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ r;}
+\DoxyCodeLine{00221\ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \};}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

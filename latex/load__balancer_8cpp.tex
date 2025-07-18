@@ -1,0 +1,63 @@
+\doxysection{load\+\_\+balancer.\+cpp File Reference}
+\hypertarget{load__balancer_8cpp}{}\label{load__balancer_8cpp}\index{load\_balancer.cpp@{load\_balancer.cpp}}
+
+
+Main driver program for simulating a load balancer with multiple web servers.  
+
+
+{\ttfamily \#include "{}load\+\_\+balancer.\+h"{}}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structrequest}{request}} \mbox{\hyperlink{load__balancer_8cpp_a00b5abd305e6edcbc4791d739f6b01b0}{generate\+\_\+request}} ()
+\begin{DoxyCompactList}\small\item\em Generate a random request with randomized input/output IPs and processing time. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{load__balancer_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Entry point of the load balancer simulation program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main driver program for simulating a load balancer with multiple web servers. 
+
+This file defines the main execution logic of a load balancer simulation. It initializes a set of servers, generates an initial queue of requests, and runs the simulation for a user-\/specified number of clock cycles. It also logs queue sizes, server statistics, and dropped requests. 
+
+\label{doc-func-members}
+\Hypertarget{load__balancer_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{load__balancer_8cpp_a00b5abd305e6edcbc4791d739f6b01b0}\index{load\_balancer.cpp@{load\_balancer.cpp}!generate\_request@{generate\_request}}
+\index{generate\_request@{generate\_request}!load\_balancer.cpp@{load\_balancer.cpp}}
+\doxysubsubsection{\texorpdfstring{generate\_request()}{generate\_request()}}
+{\footnotesize\ttfamily \label{load__balancer_8cpp_a00b5abd305e6edcbc4791d739f6b01b0} 
+\mbox{\hyperlink{structrequest}{request}} generate\+\_\+request (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Generate a random request with randomized input/output IPs and processing time. 
+
+\begin{DoxyReturn}{Returns}
+request A newly constructed request with pseudo-\/random properties. 
+\end{DoxyReturn}
+\Hypertarget{load__balancer_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\index{load\_balancer.cpp@{load\_balancer.cpp}!main@{main}}
+\index{main@{main}!load\_balancer.cpp@{load\_balancer.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{load__balancer_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Entry point of the load balancer simulation program. 
+
+Initializes the load balancer with a specified number of servers and runs the simulation for the specified duration in clock cycles. Prints logs including queue sizes and dropped requests.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command-\/line arguments. \\
+\hline
+{\em argv} & Array of command-\/line argument strings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Exit code\+: 0 for success, 1 for incorrect usage.
+\end{DoxyReturn}
+@usage ./loadbalancer $<$num\+\_\+servers$>$ $<$run\+\_\+time$>$ 

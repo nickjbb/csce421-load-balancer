@@ -1,0 +1,196 @@
+\doxysection{Webserver Class Reference}
+\hypertarget{class_webserver}{}\label{class_webserver}\index{Webserver@{Webserver}}
+
+
+Represents a single web server capable of processing network requests.  
+
+
+
+
+{\ttfamily \#include $<$webserver.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_webserver_ac2a6f51bcc54efaaf5f4773a7c24f009}{Webserver}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_webserver_a722647f58c587c05d5d2a217df0fb693}{Webserver}} (std\+::string server\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_webserver}{Webserver} with a specific name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_webserver_a3de26c45370f77a4225c489b81279177}{add\+\_\+request}} (\mbox{\hyperlink{structrequest}{request}} r, int curr\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Assigns a request to the server and sets the request\textquotesingle{}s start time. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structrequest}{request}} \mbox{\hyperlink{class_webserver_a62e74e943fdb719f34363283d1df996e}{get\+\_\+curr\+\_\+request}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the current request being processed by the server. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_webserver_ab4052459721c5660c8f87ab7634bf339}{get\+\_\+name}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the server\textquotesingle{}s name. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_webserver_a3f9e895ef0420c9104a5e95a610ecaeb}{get\+\_\+start\+\_\+time}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the time when the current request started processing. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_webserver_abca13c5777f4b099b57b5d8af38b9019}{set\+\_\+name}} (std\+::string new\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Assigns a new name to the server. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_webserver_aa21be0f4fe9bc26275dd959d5deb27d0}{is\+\_\+request\+\_\+done}} (int curr\+\_\+time)
+\begin{DoxyCompactList}\small\item\em Determines whether the server has completed its current request. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_webserver_acd253a0d1562e7b57670af968eae5593}{is\+\_\+idle}} ()
+\begin{DoxyCompactList}\small\item\em Returns whether the server is currently idle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_webserver_addcd8c8fea60c1173ba97e7a3a2d5735}{set\+\_\+idle}} (bool i)
+\begin{DoxyCompactList}\small\item\em Sets the idle status of the server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a single web server capable of processing network requests. 
+
+Each server keeps track of a current request, its name, and when the request processing began. 
+
+\label{doc-constructors}
+\Hypertarget{class_webserver_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_webserver_ac2a6f51bcc54efaaf5f4773a7c24f009}\index{Webserver@{Webserver}!Webserver@{Webserver}}
+\index{Webserver@{Webserver}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{Webserver()}{Webserver()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_webserver_ac2a6f51bcc54efaaf5f4773a7c24f009} 
+Webserver\+::\+Webserver (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+Initializes an unnamed web server with no active request. \Hypertarget{class_webserver_a722647f58c587c05d5d2a217df0fb693}\index{Webserver@{Webserver}!Webserver@{Webserver}}
+\index{Webserver@{Webserver}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{Webserver()}{Webserver()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_webserver_a722647f58c587c05d5d2a217df0fb693} 
+Webserver\+::\+Webserver (\begin{DoxyParamCaption}\item[{std\+::string}]{server\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{class_webserver}{Webserver} with a specific name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em server\+\_\+name} & Name to assign to this server. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_webserver_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_webserver_a3de26c45370f77a4225c489b81279177}\index{Webserver@{Webserver}!add\_request@{add\_request}}
+\index{add\_request@{add\_request}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{add\_request()}{add\_request()}}
+{\footnotesize\ttfamily \label{class_webserver_a3de26c45370f77a4225c489b81279177} 
+void Webserver\+::add\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrequest}{request}}}]{r}{, }\item[{int}]{curr\+\_\+time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assigns a request to the server and sets the request\textquotesingle{}s start time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The request to be processed. \\
+\hline
+{\em curr\+\_\+time} & The current simulation time. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_webserver_a62e74e943fdb719f34363283d1df996e}\index{Webserver@{Webserver}!get\_curr\_request@{get\_curr\_request}}
+\index{get\_curr\_request@{get\_curr\_request}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{get\_curr\_request()}{get\_curr\_request()}}
+{\footnotesize\ttfamily \label{class_webserver_a62e74e943fdb719f34363283d1df996e} 
+\mbox{\hyperlink{structrequest}{request}} Webserver\+::get\+\_\+curr\+\_\+request (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves the current request being processed by the server. 
+
+\begin{DoxyReturn}{Returns}
+The active request. 
+\end{DoxyReturn}
+\Hypertarget{class_webserver_ab4052459721c5660c8f87ab7634bf339}\index{Webserver@{Webserver}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily \label{class_webserver_ab4052459721c5660c8f87ab7634bf339} 
+std\+::string Webserver\+::get\+\_\+name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves the server\textquotesingle{}s name. 
+
+\begin{DoxyReturn}{Returns}
+The name of the server. 
+\end{DoxyReturn}
+\Hypertarget{class_webserver_a3f9e895ef0420c9104a5e95a610ecaeb}\index{Webserver@{Webserver}!get\_start\_time@{get\_start\_time}}
+\index{get\_start\_time@{get\_start\_time}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{get\_start\_time()}{get\_start\_time()}}
+{\footnotesize\ttfamily \label{class_webserver_a3f9e895ef0420c9104a5e95a610ecaeb} 
+int Webserver\+::get\+\_\+start\+\_\+time (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves the time when the current request started processing. 
+
+\begin{DoxyReturn}{Returns}
+Start time of the current request. 
+\end{DoxyReturn}
+\Hypertarget{class_webserver_acd253a0d1562e7b57670af968eae5593}\index{Webserver@{Webserver}!is\_idle@{is\_idle}}
+\index{is\_idle@{is\_idle}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{is\_idle()}{is\_idle()}}
+{\footnotesize\ttfamily \label{class_webserver_acd253a0d1562e7b57670af968eae5593} 
+bool Webserver\+::is\+\_\+idle (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns whether the server is currently idle. 
+
+\begin{DoxyReturn}{Returns}
+true if the server is idle. 
+\end{DoxyReturn}
+\Hypertarget{class_webserver_aa21be0f4fe9bc26275dd959d5deb27d0}\index{Webserver@{Webserver}!is\_request\_done@{is\_request\_done}}
+\index{is\_request\_done@{is\_request\_done}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{is\_request\_done()}{is\_request\_done()}}
+{\footnotesize\ttfamily \label{class_webserver_aa21be0f4fe9bc26275dd959d5deb27d0} 
+bool Webserver\+::is\+\_\+request\+\_\+done (\begin{DoxyParamCaption}\item[{int}]{curr\+\_\+time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Determines whether the server has completed its current request. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em curr\+\_\+time} & The current simulation time. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the request has completed, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{class_webserver_addcd8c8fea60c1173ba97e7a3a2d5735}\index{Webserver@{Webserver}!set\_idle@{set\_idle}}
+\index{set\_idle@{set\_idle}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{set\_idle()}{set\_idle()}}
+{\footnotesize\ttfamily \label{class_webserver_addcd8c8fea60c1173ba97e7a3a2d5735} 
+void Webserver\+::set\+\_\+idle (\begin{DoxyParamCaption}\item[{bool}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the idle status of the server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Whether the server should be marked as idle. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_webserver_abca13c5777f4b099b57b5d8af38b9019}\index{Webserver@{Webserver}!set\_name@{set\_name}}
+\index{set\_name@{set\_name}!Webserver@{Webserver}}
+\doxysubsubsection{\texorpdfstring{set\_name()}{set\_name()}}
+{\footnotesize\ttfamily \label{class_webserver_abca13c5777f4b099b57b5d8af38b9019} 
+void Webserver\+::set\+\_\+name (\begin{DoxyParamCaption}\item[{std\+::string}]{new\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assigns a new name to the server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+name} & The new name to assign. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{webserver_8h}{webserver.\+h}}\end{DoxyCompactItemize}

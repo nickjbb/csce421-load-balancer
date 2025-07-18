@@ -26,6 +26,7 @@ public:
         name = "";
         start_time = 0;
         curr_request = request{"", "", 0};
+        idle = true;
     }
 
     /**
@@ -36,6 +37,7 @@ public:
         name = server_name;
         start_time = 0;
         curr_request = request{"", "", 0};
+        idle = true;
     }
 
     /**
@@ -89,17 +91,27 @@ public:
         return curr_time > (start_time + curr_request.time_processed);
     }
 
+    /**
+     * @brief Returns whether the server is currently idle.
+     * @return true if the server is idle.
+     */
     bool is_idle(){
         return idle;
     }
 
-    void set_idle(bool i){idle = i;}
+    /**
+     * @brief Sets the idle status of the server.
+     * @param i Whether the server should be marked as idle.
+     */
+    void set_idle(bool i){
+        idle = i;
+    }
 
 private:
     request curr_request;   ///< The current request being processed.
     std::string name;       ///< Name of the web server.
     int start_time;         ///< Time when the current request began processing.
-    bool idle;              ///< Is server idle or not
+    bool idle;              ///< Whether the server is idle or busy.
 };
 
 #endif

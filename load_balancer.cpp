@@ -1,6 +1,10 @@
 /**
  * @file load_balancer.cpp
- * @brief Main driver program for simulating a load balancer.
+ * @brief Main driver program for simulating a load balancer with multiple web servers.
+ *
+ * This file defines the main execution logic of a load balancer simulation. It initializes a set of servers,
+ * generates an initial queue of requests, and runs the simulation for a user-specified number of clock cycles.
+ * It also logs queue sizes, server statistics, and dropped requests.
  */
 
 #include "load_balancer.h"
@@ -8,9 +12,9 @@
 #include <iostream>
 
 /**
- * @brief Generate a random request with random IPs and processing time.
+ * @brief Generate a random request with randomized input/output IPs and processing time.
  * 
- * @return request A new request with randomized input/output IP and processing time.
+ * @return request A newly constructed request with pseudo-random properties.
  */
 request generate_request() {
     request r;
@@ -23,14 +27,15 @@ request generate_request() {
 /**
  * @brief Entry point of the load balancer simulation program.
  * 
+ * Initializes the load balancer with a specified number of servers and runs the simulation
+ * for the specified duration in clock cycles. Prints logs including queue sizes and dropped requests.
+ *
  * @param argc Number of command-line arguments.
  * @param argv Array of command-line argument strings.
- * @return int Exit status.
- * 
- * Usage:
- * @code
+ * @return int Exit code: 0 for success, 1 for incorrect usage.
+ *
+ * @usage
  * ./loadbalancer <num_servers> <run_time>
- * @endcode
  */
 int main(int argc, char* argv[]) {
     if (argc < 3) {
@@ -49,6 +54,9 @@ int main(int argc, char* argv[]) {
     }
 
     std::cout << "Starting queue size is: " << lb.get_queue_size() << std::endl;
+    std::cout << "Task time range: 0 to 10" << std::endl;
+    std::cout << "Clock cycles: " << run_time << std::endl;
+    std::cout << "Starting with " << num_servers << " servers..." << std::endl;
 
     // Run the simulation for the specified time
     while (lb.get_time() < run_time) {
@@ -57,5 +65,8 @@ int main(int argc, char* argv[]) {
 
     std::cout << "Simulation completed at time: " << lb.get_time() << std::endl;
     std::cout << "Ending queue size is: " << lb.get_queue_size() << std::endl;
+    std::cout << "Ending number of servers is: " << lb.server_size() << std::endl;
+    std::cout << "Number of deleted requests: " << lb.get_deleted_requests() << std::endl;
+
     return 0;
 }

@@ -1,0 +1,228 @@
+\doxysection{Loadbalancer Class Reference}
+\hypertarget{class_loadbalancer}{}\label{class_loadbalancer}\index{Loadbalancer@{Loadbalancer}}
+
+
+Simulates a load balancer that assigns incoming requests to web servers and dynamically manages servers.  
+
+
+
+
+{\ttfamily \#include $<$load\+\_\+balancer.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_loadbalancer_a6c5550cabf9f8a94e244210a020f5fd6}{Loadbalancer}} (int num\+\_\+servers)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_loadbalancer}{Loadbalancer} with a given number of servers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_loadbalancer_a1d1c4aca60c0ca3d4239158ea49f48f5}{get\+\_\+time}} ()
+\begin{DoxyCompactList}\small\item\em Returns the current simulation time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_loadbalancer_adf1d770427c205bf95e5eb4f9086a890}{add\+\_\+request}} (\mbox{\hyperlink{structrequest}{request}} r)
+\begin{DoxyCompactList}\small\item\em Adds a new request to the request queue. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_loadbalancer_adbed7fff64bfbe4e138409cb0e97b81c}{is\+\_\+queue\+\_\+empty}} ()
+\begin{DoxyCompactList}\small\item\em Checks whether the request queue is empty. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_loadbalancer_a83503dfc5cecb919120d05ac7999daad}{add\+Time}} ()
+\begin{DoxyCompactList}\small\item\em Increments the simulation time by 1. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_loadbalancer_a2baba21d5dad817974fc86b62d190c4e}{get\+\_\+queue\+\_\+size}} ()
+\begin{DoxyCompactList}\small\item\em Returns the size of the request queue. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structrequest}{request}} \mbox{\hyperlink{class_loadbalancer_a0a364cde0db8a72a9392a4ab5a573b10}{get\+\_\+request}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves and removes the next request from the queue. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_loadbalancer_acfd872c5aab4ddd17948fbb8ae24a156}{get\+\_\+deleted\+\_\+requests}} ()
+\begin{DoxyCompactList}\small\item\em Returns the number of requests deleted due to firewall filtering. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_loadbalancer_aa76d79d6f81f54a90bee9fd7ce8e853e}{server\+\_\+size}} ()
+\begin{DoxyCompactList}\small\item\em Returns the current number of servers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_loadbalancer_a468eca91b1e0a6e31bfd40daa51e8f5b}{add\+\_\+server}} ()
+\begin{DoxyCompactList}\small\item\em Dynamically adds a new web server to the pool. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_loadbalancer_a9efaeeb2f2984c15713a2ec80c536eb9}{firewall}} (\mbox{\hyperlink{class_webserver}{Webserver}} \&server)
+\begin{DoxyCompactList}\small\item\em Applies a firewall rule that deletes requests from restricted IP ranges. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_loadbalancer_a76742a2651dfb9af5fd513d4c925776c}{simulate\+\_\+requests}} (int num\+\_\+servers)
+\begin{DoxyCompactList}\small\item\em Simulates one time step of request handling across all web servers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Simulates a load balancer that assigns incoming requests to web servers and dynamically manages servers. 
+
+\label{doc-constructors}
+\Hypertarget{class_loadbalancer_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_loadbalancer_a6c5550cabf9f8a94e244210a020f5fd6}\index{Loadbalancer@{Loadbalancer}!Loadbalancer@{Loadbalancer}}
+\index{Loadbalancer@{Loadbalancer}!Loadbalancer@{Loadbalancer}}
+\doxysubsubsection{\texorpdfstring{Loadbalancer()}{Loadbalancer()}}
+{\footnotesize\ttfamily \label{class_loadbalancer_a6c5550cabf9f8a94e244210a020f5fd6} 
+Loadbalancer\+::\+Loadbalancer (\begin{DoxyParamCaption}\item[{int}]{num\+\_\+servers}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{class_loadbalancer}{Loadbalancer} with a given number of servers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+servers} & The number of web servers to initialize. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_loadbalancer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_loadbalancer_adf1d770427c205bf95e5eb4f9086a890}\index{Loadbalancer@{Loadbalancer}!add\_request@{add\_request}}
+\index{add\_request@{add\_request}!Loadbalancer@{Loadbalancer}}
+\doxysubsubsection{\texorpdfstring{add\_request()}{add\_request()}}
+{\footnotesize\ttfamily \label{class_loadbalancer_adf1d770427c205bf95e5eb4f9086a890} 
+void Loadbalancer\+::add\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrequest}{request}}}]{r}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a new request to the request queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The request to add. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_loadbalancer_a468eca91b1e0a6e31bfd40daa51e8f5b}\index{Loadbalancer@{Loadbalancer}!add\_server@{add\_server}}
+\index{add\_server@{add\_server}!Loadbalancer@{Loadbalancer}}
+\doxysubsubsection{\texorpdfstring{add\_server()}{add\_server()}}
+{\footnotesize\ttfamily \label{class_loadbalancer_a468eca91b1e0a6e31bfd40daa51e8f5b} 
+void Loadbalancer\+::add\+\_\+server (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Dynamically adds a new web server to the pool. 
+
+\Hypertarget{class_loadbalancer_a83503dfc5cecb919120d05ac7999daad}\index{Loadbalancer@{Loadbalancer}!addTime@{addTime}}
+\index{addTime@{addTime}!Loadbalancer@{Loadbalancer}}
+\doxysubsubsection{\texorpdfstring{addTime()}{addTime()}}
+{\footnotesize\ttfamily \label{class_loadbalancer_a83503dfc5cecb919120d05ac7999daad} 
+void Loadbalancer\+::add\+Time (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Increments the simulation time by 1. 
+
+\Hypertarget{class_loadbalancer_a9efaeeb2f2984c15713a2ec80c536eb9}\index{Loadbalancer@{Loadbalancer}!firewall@{firewall}}
+\index{firewall@{firewall}!Loadbalancer@{Loadbalancer}}
+\doxysubsubsection{\texorpdfstring{firewall()}{firewall()}}
+{\footnotesize\ttfamily \label{class_loadbalancer_a9efaeeb2f2984c15713a2ec80c536eb9} 
+void Loadbalancer\+::firewall (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_webserver}{Webserver}} \&}]{server}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Applies a firewall rule that deletes requests from restricted IP ranges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em server} & Reference to the web server whose current request is to be filtered. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_loadbalancer_acfd872c5aab4ddd17948fbb8ae24a156}\index{Loadbalancer@{Loadbalancer}!get\_deleted\_requests@{get\_deleted\_requests}}
+\index{get\_deleted\_requests@{get\_deleted\_requests}!Loadbalancer@{Loadbalancer}}
+\doxysubsubsection{\texorpdfstring{get\_deleted\_requests()}{get\_deleted\_requests()}}
+{\footnotesize\ttfamily \label{class_loadbalancer_acfd872c5aab4ddd17948fbb8ae24a156} 
+int Loadbalancer\+::get\+\_\+deleted\+\_\+requests (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the number of requests deleted due to firewall filtering. 
+
+\begin{DoxyReturn}{Returns}
+int Number of deleted requests. 
+\end{DoxyReturn}
+\Hypertarget{class_loadbalancer_a2baba21d5dad817974fc86b62d190c4e}\index{Loadbalancer@{Loadbalancer}!get\_queue\_size@{get\_queue\_size}}
+\index{get\_queue\_size@{get\_queue\_size}!Loadbalancer@{Loadbalancer}}
+\doxysubsubsection{\texorpdfstring{get\_queue\_size()}{get\_queue\_size()}}
+{\footnotesize\ttfamily \label{class_loadbalancer_a2baba21d5dad817974fc86b62d190c4e} 
+int Loadbalancer\+::get\+\_\+queue\+\_\+size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the size of the request queue. 
+
+\begin{DoxyReturn}{Returns}
+Size of the request queue. 
+\end{DoxyReturn}
+\Hypertarget{class_loadbalancer_a0a364cde0db8a72a9392a4ab5a573b10}\index{Loadbalancer@{Loadbalancer}!get\_request@{get\_request}}
+\index{get\_request@{get\_request}!Loadbalancer@{Loadbalancer}}
+\doxysubsubsection{\texorpdfstring{get\_request()}{get\_request()}}
+{\footnotesize\ttfamily \label{class_loadbalancer_a0a364cde0db8a72a9392a4ab5a573b10} 
+\mbox{\hyperlink{structrequest}{request}} Loadbalancer\+::get\+\_\+request (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves and removes the next request from the queue. 
+
+\begin{DoxyReturn}{Returns}
+request The next request. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Advances time by one unit. 
+\end{DoxyNote}
+\Hypertarget{class_loadbalancer_a1d1c4aca60c0ca3d4239158ea49f48f5}\index{Loadbalancer@{Loadbalancer}!get\_time@{get\_time}}
+\index{get\_time@{get\_time}!Loadbalancer@{Loadbalancer}}
+\doxysubsubsection{\texorpdfstring{get\_time()}{get\_time()}}
+{\footnotesize\ttfamily \label{class_loadbalancer_a1d1c4aca60c0ca3d4239158ea49f48f5} 
+int Loadbalancer\+::get\+\_\+time (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the current simulation time. 
+
+\begin{DoxyReturn}{Returns}
+int Current system time. 
+\end{DoxyReturn}
+\Hypertarget{class_loadbalancer_adbed7fff64bfbe4e138409cb0e97b81c}\index{Loadbalancer@{Loadbalancer}!is\_queue\_empty@{is\_queue\_empty}}
+\index{is\_queue\_empty@{is\_queue\_empty}!Loadbalancer@{Loadbalancer}}
+\doxysubsubsection{\texorpdfstring{is\_queue\_empty()}{is\_queue\_empty()}}
+{\footnotesize\ttfamily \label{class_loadbalancer_adbed7fff64bfbe4e138409cb0e97b81c} 
+bool Loadbalancer\+::is\+\_\+queue\+\_\+empty (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks whether the request queue is empty. 
+
+\begin{DoxyReturn}{Returns}
+true If the queue is empty. 
+
+false If there are pending requests. 
+\end{DoxyReturn}
+\Hypertarget{class_loadbalancer_aa76d79d6f81f54a90bee9fd7ce8e853e}\index{Loadbalancer@{Loadbalancer}!server\_size@{server\_size}}
+\index{server\_size@{server\_size}!Loadbalancer@{Loadbalancer}}
+\doxysubsubsection{\texorpdfstring{server\_size()}{server\_size()}}
+{\footnotesize\ttfamily \label{class_loadbalancer_aa76d79d6f81f54a90bee9fd7ce8e853e} 
+int Loadbalancer\+::server\+\_\+size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the current number of servers. 
+
+\begin{DoxyReturn}{Returns}
+int Number of servers. 
+\end{DoxyReturn}
+\Hypertarget{class_loadbalancer_a76742a2651dfb9af5fd513d4c925776c}\index{Loadbalancer@{Loadbalancer}!simulate\_requests@{simulate\_requests}}
+\index{simulate\_requests@{simulate\_requests}!Loadbalancer@{Loadbalancer}}
+\doxysubsubsection{\texorpdfstring{simulate\_requests()}{simulate\_requests()}}
+{\footnotesize\ttfamily \label{class_loadbalancer_a76742a2651dfb9af5fd513d4c925776c} 
+void Loadbalancer\+::simulate\+\_\+requests (\begin{DoxyParamCaption}\item[{int}]{num\+\_\+servers}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Simulates one time step of request handling across all web servers. 
+
+
+\begin{DoxyItemize}
+\item Idle servers take new requests from the queue.
+\item Servers completing their work return to idle state.
+\item Idle servers with no requests may be removed.
+\item A new server may be added if the load is high.
+\item Occasionally generates a new random request.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+servers} & The maximum number of servers to maintain. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{load__balancer_8h}{load\+\_\+balancer.\+h}}\end{DoxyCompactItemize}
